@@ -286,8 +286,5 @@
     }
     ```
 
-5. Navigasi halaman pada flutter 
+5. Navigasi halaman pada flutter  
     Dengan menggunakan widget `Navigator`, kita bisa melakukan navigasi antar halaman pada flutter. Dengan `Navigator`, kita dapat mendorong (push) dan memutar (pop) halaman dari tumpukan (stack) halaman. Kita juga bisa menggunakan `pushReplacement` menggantikan halaman saat ini dengan halaman baru tanpa menambahkannya ke dalam stack.  
-
-6. Implementasi checklist
-    
