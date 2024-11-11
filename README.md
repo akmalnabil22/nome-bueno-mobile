@@ -1,5 +1,6 @@
-# nome_bueno  
+# Nome Bueno  
 [Tugas 7](#tugas-7)
+[Tugas 8](#tugas-8)
 
 ## Tugas 7  
 1. Perbedaan stateless widget dan stateful widget  
@@ -184,3 +185,109 @@
             },            
         ),
         ```
+
+## Tugas 8  
+1. Kegunaan `const` pada Flutter  
+    Di Flutter, kata kunci const digunakan untuk menandai objek atau nilai yang immutable (tidak dapat diubah). Keuntungan `const` antara lain mengurangi pekerjaan rebuild dan meningkatkan kinerja aplikasi. `const` sebaiknya digunakan untuk widget statis, konstruktor yang dapat dikonstankan dan untuk parameter dan objek konstan. `const` sebaiknya tidak digunakan untuk nilai atau widget yang berubah dan jika penggunaan `const` tidak menambah keuntungan kinerja.  
+
+2. Perbandingan `Column` dan `Row`  
+    `Column` digunakan untuk menyusun widget secara vertikal (dari atas ke bawah) sedangkan `Row` digunakan untuk menyusun widget secara horizontal (dari kiri ke kanan).  
+    Contoh implementasi `Column`  
+    ```dart
+    Column(
+        mainAxisAlignment: MainAxisAlignment.center, // Mengatur posisi widget di tengah vertikal.
+        crossAxisAlignment: CrossAxisAlignment.start, // Memulai semua widget dari kiri.
+        children: [
+            Text(
+            'Hello, World!',
+            style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 8), // Jarak antara Text dan ElevatedButton
+            ElevatedButton(
+            onPressed: () {},
+            child: Text('Click Me'),
+            ),
+        ],
+    )
+    ```
+    Contoh implementasi `Row`  
+    ```dart
+    Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround, // Mengatur jarak sama rata di antara widget.
+        crossAxisAlignment: CrossAxisAlignment.center, // Menyelaraskan widget di tengah.
+        children: [
+            Icon(Icons.home, size: 30),
+            Text(
+            'Home',
+            style: TextStyle(fontSize: 20),
+            ),
+            ElevatedButton(
+            onPressed: () {},
+            child: Text('Profile'),
+            ),
+        ],
+    )
+    ```
+
+3. Elemen input Flutter  
+    Elemen input yang digunakan:  
+    - `TextFormField`: digunakan untuk menerima input teks pengguna
+    - `ElevatedButton`: digunakan untuk menyimpan data yang diisi oleh pengguna  
+
+    Elemen input yang tidak digunakan:  
+    - `Checkbox`: widget ini digunakan untuk menerima pilihan biner (ya/tidak atau benar/salah).  
+    - `Switch`: seperti Checkbox, tetapi berbentuk saklar.  
+    - `Radio`: elemen input yang memungkinkan pengguna memilih satu opsi dari beberapa pilihan.  
+    - `DropdownButton`: elemen input ini memungkinkan pengguna memilih satu opsi dari daftar pilihan dalam bentuk dropdown.  
+    - `Slider`: elemen input yang memungkinkan pengguna memilih nilai dalam rentang tertentu dengan menyeret slider.  
+    - `DatePicker`: widget untuk memilih tanggal.  
+    - `TimePicker`: widget untuk memilih waktu tertentu.  
+
+4. Mengatur konsistensi tema aplikasi flutter  
+    Kita bisa mengatur tema aplikasi di dalam `MaterialApp`
+    ```dart
+    class MyApp extends StatelessWidget {
+        const MyApp({super.key});
+
+        @override
+        Widget build(BuildContext context) {
+            return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+                colorScheme: ColorScheme.fromSwatch(
+                    primarySwatch: Colors.lightGreen,
+                ).copyWith(secondary: Colors.lightGreen[400]),
+                ),
+            home: MyHomePage(),
+            );
+        }
+    }
+    ```
+    Lalu kita bisa menggunakan tema yang telah ditetapkan dengan menggunakan `Theme.of(context)`. Contoh:  
+    ```dart
+    class LeftDrawer extends StatelessWidget {
+        const LeftDrawer({super.key});
+
+        @override
+        Widget build(BuildContext context) {
+            return Drawer(
+            child: ListView(
+                children: [
+                DrawerHeader(
+                    decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    ),
+                    ...
+                ),
+                ],
+            ),
+            );
+        }
+    }
+    ```
+
+5. Navigasi halaman pada flutter 
+    Dengan menggunakan widget `Navigator`, kita bisa melakukan navigasi antar halaman pada flutter. Dengan `Navigator`, kita dapat mendorong (push) dan memutar (pop) halaman dari tumpukan (stack) halaman. Kita juga bisa menggunakan `pushReplacement` menggantikan halaman saat ini dengan halaman baru tanpa menambahkannya ke dalam stack.  
+
+6. Implementasi checklist
+    
