@@ -132,7 +132,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                               "http://127.0.0.1:8000/create-flutter/",
                               jsonEncode(<String, String>{
                                   'name': _name,
-                                  'amount': _amount.toString(),
+                                  'price': _amount.toString(),
                                   'description': _description,
                               }),
                           );
