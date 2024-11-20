@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nome_bueno/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:nome_bueno/screens/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.lightGreen,
         ).copyWith(secondary: Colors.lightGreen[400]),
         ),
-      home: MyHomePage(),
+      home: const LoginPage(),
     ),
     );
   }
