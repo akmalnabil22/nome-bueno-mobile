@@ -1,6 +1,7 @@
 # Nome Bueno  
-[Tugas 7](#tugas-7)
-[Tugas 8](#tugas-8)
+[Tugas 7](#tugas-7)  
+[Tugas 8](#tugas-8)  
+[Tugas 9](#tugas-9)  
 
 ## Tugas 7  
 1. Perbedaan stateless widget dan stateful widget  
@@ -288,3 +289,68 @@
 
 5. Navigasi halaman pada flutter  
     Dengan menggunakan widget `Navigator`, kita bisa melakukan navigasi antar halaman pada flutter. Dengan `Navigator`, kita dapat mendorong (push) dan memutar (pop) halaman dari tumpukan (stack) halaman. Kita juga bisa menggunakan `pushReplacement` menggantikan halaman saat ini dengan halaman baru tanpa menambahkannya ke dalam stack.  
+
+## TUGAS 9
+1. Mengapa perlu model untuk pengambilan ataupun pengiriman data JSON?  
+    Penggunaan model untul pengambilan dan pengiriman data JSON memiliki beberapa kelebihan seperti organisasi data yang lebih baik, tipe data atribut yang jelas, validasi data, dan reusabilitas. Tanpa model, pengambilan atau pengiriman JSON tidak selalu menyebabkan error, tetapi kemungkinan besar akan menyebabkan masalah. Bisa saja kita mencoba mengakses atribut yang tidak ada atau memiliki tipe data yang berbeda yang bisa menyebabkan error.  
+
+2. Fungsi library http
+    - Mengirim http request (POST, GET, PUT, DELETE)  
+    - Menerima http response  
+    - Mengirim data dalam format JSON  
+    - Menangani error http  
+    - Mendukung operasi asyncronous  
+
+3. Fungsi CookieRequest  
+    CookieRequest berfungsi untuk menyimpan cookie yang diterima dari server selama sesi berlangsung. CookieRequest memastikan bahwa setiap permintaan dikirim dengan cookie yang relevan untuk mengautentikasi pengguna. CookieRequest perlu dibagikan ke semua komponen flutter karena CookieRequest bertanggung jawab mengelola cookie sehingga instance yang sama perlu digunakan di seluruh aplikasi agar sesi tetap konsisten. Instance yang sama juga memungkinkan seluruh komponen berbagi status otentikasi pengguna.
+
+4. Mekanisme pengiriman data  
+    - Input data: pengguna mengisi data menggunakan elemen input  
+    - Validasi: Data diperiksa agar sesuai aturan  
+    - Pengiriman: Data dikirim ke backend dengan menggunakan library http
+    - Pengambilan: Data diambil dari backen dengan menggunakan library http
+    - Tampilan: Data ditampilkan dengan menggunakan widget seperti `Text`, `ListView`, atau `GridView`.  
+
+5. Mekanisme autentikasi
+    - Register: Flutter mengirim data ke Django lalu Django menyimpan akun di database
+    - Login: Flutter mengirim data login lalu Django memvalidasi dan mengirimkan token
+    - Menu terautentikasi: Flutter menggunkan token untuk mengakses halaman yang dilindungi
+    - Logout: Token dihapus dari Flutter dan pengguna diarahkan ke halaman login  
+
+6. Implementasi Checklist
+    - [Implementasi Register](/lib/screens/register.dart)
+    - [Implementasi Login](/lib/screens/login.dart)
+    - Integrasi sistem autentikasi Django dengan projek FLutter
+        Pada halaman register  
+        ```dart
+        final response = await request.postJson(
+        "http://127.0.0.1:8000/auth/register/",
+        jsonEncode({
+        "username": username,
+        "password1": password1,
+        "password2": password2,
+        }));
+        ```
+        Pada halaman login  
+        ```dart
+        final response = await request
+                          .login("http://127.0.0.1:8000/auth/login/", {
+                        'username': username,
+                        'password': password,
+                      });
+        ```  
+        Pada halaman list produk  
+        ```dart
+        final response = await request.get('http://127.0.0.1:8000/json/');
+        ```
+    - [Model Kustom](/lib/models/product_entry.dart)
+    - [Halaman Daftar Semua Produk](/lib/screens/list_productentry.dart)
+    - [Halaman Detail Setiap Produk](/lib/screens/product_detail.dart)
+    - Filter Produk Setiap User  
+        Pada `views.py` aplikasi `main` django  
+        ```py
+        def show_json(request):
+            data = Product.objects.filter(user=request.user)
+            return HttpResponse(serializers.serialize('json', data), content_type='application/json')
+        ```
+

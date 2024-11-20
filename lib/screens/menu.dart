@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nome_bueno/left_drawer.dart';
-import 'package:nome_bueno/product_card.dart';
+import 'package:nome_bueno/widgets/left_drawer.dart';
+import 'package:nome_bueno/widgets/product_card.dart';
 
 class MyHomePage extends StatelessWidget {
   final String npm = '2306152084'; // NPM
